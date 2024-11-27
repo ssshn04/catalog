@@ -35,8 +35,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody ProductRequest productRequest) {
-        Product createdProduct = productService.createProduct(productRequest);
-        return ResponseEntity.ok(createdProduct);
+    public String createProduct(@RequestBody ProductRequest productRequest) {
+        System.out.println("Request: " + productRequest);
+        productService.createProduct(productRequest);
+        return "Product is Created successfully!";
     }
 }
