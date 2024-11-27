@@ -4,7 +4,6 @@ import com.catalog.catalog.entities.Product;
 import com.catalog.catalog.requests.ProductRequest;
 import com.catalog.catalog.services.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/products")
 public class ProductController {
-
     private final ProductService productService;
 
     @GetMapping

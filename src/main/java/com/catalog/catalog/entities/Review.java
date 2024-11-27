@@ -1,15 +1,20 @@
 package com.catalog.catalog.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "reviews")
 @Getter
 @Setter
+@Builder
 public class Review {
 
     @Id

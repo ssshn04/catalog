@@ -18,10 +18,12 @@ public class CategoryService {
     }
     public List<CategoryResponse> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
+        System.out.println(categories.getFirst().getCategoryId());
         return categories.stream()
                 .map(category -> {
                     CategoryResponse response = new CategoryResponse();
                     response.setName(category.getName());
+                    response.setCategoryId(category.getCategoryId());
                     return response;
                 })
                 .collect(Collectors.toList());
