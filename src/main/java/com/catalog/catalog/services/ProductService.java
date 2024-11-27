@@ -49,4 +49,13 @@ public class ProductService {
 
         return productRepository.save(product);
     }
+
+    public List<Product> getRecommendedProducts(int productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with ID: " + productId));
+
+        Category category = product.getCategory();
+
+        return productRepository.findTop5ByCategoryOrderByRatingDesc(category);
+    }
 }
