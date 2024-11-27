@@ -30,6 +30,7 @@ public class ProductService {
     }
     public void createProduct(ProductRequest productRequest) {
         try {
+
             Country country = countryRepository.findById(productRequest.getCountryId())
                     .orElseThrow(() -> new RuntimeException("Country not found with ID: " + productRequest.getCountryId()));
 

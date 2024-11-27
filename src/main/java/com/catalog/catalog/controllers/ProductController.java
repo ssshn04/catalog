@@ -3,6 +3,7 @@ package com.catalog.catalog.controllers;
 import com.catalog.catalog.entities.Product;
 import com.catalog.catalog.requests.ProductRequest;
 import com.catalog.catalog.services.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,21 +11,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")  // Основний шлях для всіх ендпоїнтів
+@RequiredArgsConstructor
+@RequestMapping("/api/products")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    // GET запит для отримання всіх товарів
-    @GetMapping  // Відповідає /api/products
+    @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
-    // GET запит для отримання товару за ID
-    @GetMapping("/{productId}")  // Відповідає /api/products/{productId}
+    @GetMapping("/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable int productId) {
         Product product = productService.getProductById(productId);
         if (product != null) {
