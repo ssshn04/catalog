@@ -48,4 +48,13 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "categoryId", required = false) Integer categoryId,
+            @RequestParam(value = "countryId", required = false) Integer countryId) {
+        List<Product> products = productService.searchProducts(name, categoryId, countryId);
+        return ResponseEntity.ok(products);
+    }
 }

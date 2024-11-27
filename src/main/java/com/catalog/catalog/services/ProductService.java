@@ -58,4 +58,8 @@ public class ProductService {
 
         return productRepository.findTop5ByCategoryOrderByRatingDesc(category);
     }
+
+    public List<Product> searchProducts(String name, Integer categoryId, Integer countryId) {
+        return productRepository.searchProducts(name, categoryId, countryId);
+    }
 }
