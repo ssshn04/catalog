@@ -10,7 +10,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -61,5 +63,14 @@ public class ProductService {
 
     public List<Product> searchProducts(String name, Integer categoryId, Integer countryId) {
         return productRepository.searchProducts(name, categoryId, countryId);
+    }
+
+    public boolean isProductInStock(int productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        return product.isPresent() && product.get().getStockAvailable();
+    }
+    public BigDecimal getProductPrice(int productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        return product.map(Product::getPrice).orElse(null);
     }
 }

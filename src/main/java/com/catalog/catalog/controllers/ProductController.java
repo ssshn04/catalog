@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -56,5 +57,15 @@ public class ProductController {
             @RequestParam(value = "countryId", required = false) Integer countryId) {
         List<Product> products = productService.searchProducts(name, categoryId, countryId);
         return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/{productId}/in-stock")
+    public boolean isProductInStock(@PathVariable int productId) {
+        return productService.isProductInStock(productId);
+    }
+
+    @GetMapping("/{productId}/price")
+    public BigDecimal getProductPrice(@PathVariable int productId) {
+        return productService.getProductPrice(productId);
     }
 }
